@@ -87,10 +87,31 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 - `f0` - SysEx header
 - `00 02 0b` - Denon ID
 - `10 or 30` - Control the left or right screen respectively
-- `08 0a 00 04` - Command for changing text
-- `00 04` - Other parameters NEEDS INVESTIGATION
+- `08 0a 00` - Command for changing text
+- `04` - Number of SysEx bytes left to send before the `f7` footer
+- `<visible elements>` - See table below
+- `00` - Other parameters NEEDS INVESTIGATION
 - `0* 0*` - Text to show (See list below for possible values)
 - `f7` - SysEx footer
+
+#### Visible Elements
+| Value        | Background Image | Engine DJ OS Logo | Wheel Position Ring |
+|--------------|------------------|-------------------|---------------------|
+| `*0` or `*8` | No               | No                | No                  |
+| `*1` or `*9` | Yes              | No                | No                  |
+| `*2` or `*a` | No               | Yes               | No                  |
+| `*3` or `*b` | Yes              | Yes               | No                  |
+| `*4` or `*c` | No               | No                | Yes                 |
+| `*5` or `*d` | Yes              | No                | Yes                 |
+| `*6` or `*e` | No               | Yes               | Yes                 |
+| `*7` or `*f` | No               | Yes               | Yes                 |
+
+| Value        | Slip Ring | Slip Indicator |
+|--------------|-----------|----------------|
+| `0*` or `4*` | No        | No             |
+| `1*` or `5*` | Yes       | No             |
+| `2*` or `6*` | No        | Yes            |
+| `3*` or `7*` | Yes       | Yes            |
 
 #### Foreground text values
 - `00 00` - 1/64
