@@ -94,8 +94,8 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 - `<text to display>` - See list below for possible values
 - `f7` - SysEx footer
 
-### <visible elements A>
-
+#### visible elements A
+  
 | Value        | Slip Ring | Slip Indicator |
 |--------------|-----------|----------------|
 | `0*` or `4*` |           |                |
@@ -113,9 +113,9 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 | `*5` or `*d` | X                |                   | X                   |
 | `*6` or `*e` |                  | X                 | X                   |
 | `*7` or `*f` | X                | X                 | X                   |
-
-### <visible elements B>
-
+  
+#### visible elements B
+  
 | Value        | Overlay Graphic | Text | Beat Jump Symbol |
 |--------------|-----------------|------|------------------|
 | `*0` or `*1` |                 |      |                  |
@@ -131,8 +131,8 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 |------------------------------|-------------|
 | `0*` or `2*` or `4*` or `6*` |             |
 | `1*` or `3*` or `5*` or `7*` | X           |
-
-#### <text to display>
+  
+#### text to display
 - `00 00` - 1/64
 - `00 01` - 1/32
 - `00 02` - 1/16
