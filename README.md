@@ -55,6 +55,15 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 - Unlock left display for SysEx control - `f0 00 02 0b 10 08 10 00 00 f7`
 - Unlock right display for SysEx control - `f0 00 02 0b 30 08 10 00 00 f7`
 
+#### Change jog wheel backlight brightness
+- `f0` - SysEx header
+- `00 02 0b` - Denon ID
+- `10 or 30` - Control the left or right screen respectively
+- `08 7c 00` - Command for changing brightness
+- `01` - Number of SysEx bytes left to send before the `f7` footer
+- `<brightness>` - Value between `00` and `7f`
+- `f7` - SysEx footer
+
 #### Change colour of jog wheel display element
 - `f0` - SysEx header
 - `00 02 0b` - Denon ID
@@ -68,6 +77,12 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 - `0* 0*` - Blue level (Same format as above)
 - `f7` - SysEx footer
 
+#### Change position of slip/wheel position indicator
+- `0e` - MIDI code for pitch shift
+- `e0 or e1` - Address for wheel position or slip position respectively
+- `<position LSB>` - Least significant byte for 14-bit position precision
+- `<position MSB>` - Most significant byte for 14-bit position precision
+
 #### Possible elements to change
 - `00` - Album Art (Cannot change colour, only opacity)
 - `01` - Engine DJ OS Logo
@@ -75,15 +90,15 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 - `03` - Platter Position Indicator
 - `04` - Slip Position Ring
 - `05` - Slip Position Indicator
-- `06` - Track Progress Ring
-- `07` - Track Progress Indicator
+- `06` - Track Progress Ring (No visible change at present)
+- `07` - Track Progress Indicator (No visible change at present)
 - `08` - Text
 
 #### Messages used in Virtual DJ
 - Show '3' on left wheel screen - `f0 00 02 0b 10 08 0a 00 04 01 02 02 10 f7`
 - Clear left wheel text - `f0 00 02 0b 10 08 0a 00 04 01 00 01 00 f7`
 
-#### Change foreground text
+#### Show specific elements / change text
 - `f0` - SysEx header
 - `00 02 0b` - Denon ID
 - `10 or 30` - Control the left or right screen respectively
@@ -91,6 +106,7 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 - `04` - Number of SysEx bytes left to send before the `f7` footer
 - `<visible elements A>` - See table below
 - `<visible elements B>` - See table below
+- `00` - Album artwork index (Requires images to be loaded onto jog wheels, which hasn't been figured out yet)
 - `<text to display>` - See list below for possible values
 - `f7` - SysEx footer
 
@@ -116,6 +132,11 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
   
 #### visible elements B
   
+| Value                        | Loop Symbol |
+|------------------------------|-------------|
+| `0*` or `2*` or `4*` or `6*` |             |
+| `1*` or `3*` or `5*` or `7*` | X           |
+  
 | Value        | Overlay Graphic | Text | Beat Jump Symbol |
 |--------------|-----------------|------|------------------|
 | `*0` or `*1` |                 |      |                  |
@@ -127,33 +148,28 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 | `*c` or `*d` | X               |      | X                |
 | `*e` or `*f` | X               | X    | X                |
 
-| Value                        | Loop Symbol |
-|------------------------------|-------------|
-| `0*` or `2*` or `4*` or `6*` |             |
-| `1*` or `3*` or `5*` or `7*` | X           |
-  
 #### text to display
-- `00 00` - 1/64
-- `00 01` - 1/32
-- `00 02` - 1/16
-- `00 03` - 1/8
-- `00 04` - 1/4
-- `00 05` - 1/2
-- `00 06` - 1
-- `00 07` - 2
-- `00 08` - 4
-- `00 09` - 8
-- `00 0a` - 16
-- `00 0b` - 32
-- `00 0c` - 64
-- `00 0d` - --
-- `00 0e` - A
-- `00 0f` - B
-- `01 00` - 3
-- `01 01` - 6
-- `01 02` - 12
-- `01 03` - C
-- `01 04` - D
+- `00` - 1/64
+- `01` - 1/32
+- `02` - 1/16
+- `03` - 1/8
+- `04` - 1/4
+- `05` - 1/2
+- `06` - 1
+- `07` - 2
+- `08` - 4
+- `09` - 8
+- `0a` - 16
+- `0b` - 32
+- `0c` - 64
+- `0d` - --
+- `0e` - A
+- `0f` - B
+- `10` - 3
+- `11` - 6
+- `12` - 12
+- `13` - C
+- `14` - D
 
 ### FX OLED Screens
 
