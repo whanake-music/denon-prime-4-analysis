@@ -95,12 +95,14 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 - `f7` - SysEx footer
 
 #### <visible elements A>
+
 | Value        | Slip Ring | Slip Indicator |
 |--------------|-----------|----------------|
 | `0*` or `4*` |           |                |
 | `1*` or `5*` | X         |                |
 | `2*` or `6*` |           | X              |
 | `3*` or `7*` | X         | X              |
+
 | Value        | Background Image | Engine DJ OS Logo | Wheel Position Ring |
 |--------------|------------------|-------------------|---------------------|
 | `*0` or `*8` |                  |                   |                     |
@@ -113,6 +115,7 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 | `*7` or `*f` |                  | X                 | X                   |
 
 #### <visible elements B>
+
 | Value        | Overlay Graphic | Text | Beat Jump Symbol |
 |--------------|-----------------|------|------------------|
 | `*0` or `*1` |                 |      |                  |
@@ -123,6 +126,7 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 | `*a` or `*b` |                 | X    | X                |
 | `*c` or `*d` | X               |      | X                |
 | `*e` or `*f` | X               | X    | X                |
+
 | Value                        | Loop Symbol |
 |------------------------------|-------------|
 | `0*` or `2*` or `4*` or `6*` |             |
