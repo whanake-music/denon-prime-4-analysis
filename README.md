@@ -89,31 +89,46 @@ Here, you can find all the information I could gather on the Prime 4's SysEx mes
 - `10 or 30` - Control the left or right screen respectively
 - `08 0a 00` - Command for changing text
 - `04` - Number of SysEx bytes left to send before the `f7` footer
-- `<visible elements>` - See table below
-- `00` - Other parameters NEEDS INVESTIGATION
-- `0* 0*` - Text to show (See list below for possible values)
+- `<visible elements A>` - See table below
+- `<visible elements B>` - See table below
+- `<text to display>` - See list below for possible values
 - `f7` - SysEx footer
 
-#### Visible Elements
-| Value        | Background Image | Engine DJ OS Logo | Wheel Position Ring |
-|--------------|------------------|-------------------|---------------------|
-| `*0` or `*8` | No               | No                | No                  |
-| `*1` or `*9` | Yes              | No                | No                  |
-| `*2` or `*a` | No               | Yes               | No                  |
-| `*3` or `*b` | Yes              | Yes               | No                  |
-| `*4` or `*c` | No               | No                | Yes                 |
-| `*5` or `*d` | Yes              | No                | Yes                 |
-| `*6` or `*e` | No               | Yes               | Yes                 |
-| `*7` or `*f` | No               | Yes               | Yes                 |
-
+#### <visible elements A>
 | Value        | Slip Ring | Slip Indicator |
 |--------------|-----------|----------------|
-| `0*` or `4*` | No        | No             |
-| `1*` or `5*` | Yes       | No             |
-| `2*` or `6*` | No        | Yes            |
-| `3*` or `7*` | Yes       | Yes            |
+| `0*` or `4*` |           |                |
+| `1*` or `5*` | X         |                |
+| `2*` or `6*` |           | X              |
+| `3*` or `7*` | X         | X              |
+| Value        | Background Image | Engine DJ OS Logo | Wheel Position Ring |
+|--------------|------------------|-------------------|---------------------|
+| `*0` or `*8` |                  |                   |                     |
+| `*1` or `*9` | X                |                   |                     |
+| `*2` or `*a` |                  | X                 |                     |
+| `*3` or `*b` | X                | X                 |                     |
+| `*4` or `*c` |                  |                   | X                   |
+| `*5` or `*d` | X                |                   | X                   |
+| `*6` or `*e` |                  | X                 | X                   |
+| `*7` or `*f` |                  | X                 | X                   |
 
-#### Foreground text values
+#### <visible elements B>
+| Value        | Overlay Graphic | Text | Beat Jump Symbol |
+|--------------|-----------------|------|------------------|
+| `*0` or `*1` |                 |      |                  |
+| `*2` or `*3` |                 | X    |                  |
+| `*4` or `*5` | X               |      |                  |
+| `*6` or `*7` | X               | X    |                  |
+| `*8` or `*9` |                 |      | X                |
+| `*a` or `*b` |                 | X    | X                |
+| `*c` or `*d` | X               |      | X                |
+| `*e` or `*f` | X               | X    | X                |
+| Value                        | Loop Symbol |
+|------------------------------|-------------|
+| `0*` or `2*` or `4*` or `6*` |             |
+| `1*` or `3*` or `5*` or `7*` | X           |
+
+#### <text to display>
 - `00 00` - 1/64
 - `00 01` - 1/32
 - `00 02` - 1/16
