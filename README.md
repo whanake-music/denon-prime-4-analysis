@@ -36,60 +36,84 @@ Admittedly, I had a bit of trouble figuring out how to do this, so I'm collating
 
 Here, you can find all the information I could gather on the Prime 4's SysEx messages. There isn't a reference manual explaining these, so I'm finding them as I go.
 
-- Denon DJ SysEx header - `00 02 0B`
+- `f0 00 02 0b 7f 08 60 00 04 04 01 02 00 f7` - Returns the position of all the knobs and faders on the Prime 4.
 
-- `f0 00 02 0b 7f 08 60 00 04 04 01 02 00 f7` - returns the position of all the knobs and faders on the Prime 4.
+#### Send specific RGB values to multi-coloured LEDs
+- `f0` - SysEx header
+- `00 02 0b` - Denon ID
+- `7f` - Send message to main control surface
+- `08 03 00` - Command to send RGB colour value
+- `05` - Number of SysEx bytes left to send before the `f7` footer
+- `<channel>` - MIDI channel number of LED minus 1
+- `<index>` - Index of LED
+- `<red>` - Value between `00` and `7f`
+- `<green>` - Value between `00` and `7f`
+- `<blue>` - Value between `00` and `7f`
+- `f7` - SysEx footer
 
 ### Jog Wheel Displays
 - Unlock left display for SysEx control - `f0 00 02 0b 10 08 10 00 00 f7`
 - Unlock right display for SysEx control - `f0 00 02 0b 30 08 10 00 00 f7`
 
+#### Change colour of jog wheel display element
+- `f0` - SysEx header
+- `00 02 0b` - Denon ID
+- `10 or 30` - Control the left or right screen respectively
+- `08 0b 00` - Command for changing colour of element
+- `09` - Number of SysEx bytes left to send before the `f7` footer
+- `<element>` - Element to change (See list below for possible values)
+- `0* 0*` - Opacity level (between `00 00` and `0f 0f`)
+- `0* 0*` - Red level (Same format as above)
+- `0* 0*` - Green level (Same format as above)
+- `0* 0*` - Blue level (Same format as above)
+- `f7` - SysEx footer
+
+#### Possible elements to change
+- `00` - Album Art (Cannot change colour, only opacity)
+- `01` - Engine DJ OS Logo
+- `02` - Platter Position Ring
+- `03` - Platter Position Indicator
+- `04` - Slip Position Ring
+- `05` - Slip Position Indicator
+- `06` - Track Progress Ring
+- `07` - Track Progress Indicator
+- `08` - Text
+
 #### Messages used in Virtual DJ
-- Show '1' on left wheel screen - `f0 00 02 0b 10 08 0a 00 04 01 02 01 06 f7`
 - Show '3' on left wheel screen - `f0 00 02 0b 10 08 0a 00 04 01 02 02 10 f7`
-- Darken left wheel screen image - `f0 00 02 0b 10 08 0b 00 09 00 06 00 00 00 00 00 00 00 f7`
-- Change colour of text to lime green - `f0 00 02 0b 10 08 0b 00 09 08 0f 0f 00 00 0f 0f 00 00 f7`
-- Change colour of text to light blue - `f0 00 02 0b 10 08 0b 00 09 08 0f 0f 04 0a 08 06 0e 06 f7`
 - Clear left wheel text - `f0 00 02 0b 10 08 0a 00 04 01 00 01 00 f7`
-- Brighten left wheel screen image - `f0 00 02 0b 10 08 0b 00 09 00 0f 0f 00 00 00 00 00 00 f7`
-
-#### Change colour of left jog wheel text
-`SysEx Header   Denon DJ Header      Command      Text   Alpha   Red   Green   Blue   SysEx Footer`
-
-`     f0           00 02 0b       10 08 0b 00 09   08    0* 0*  0* 0*  0* 0*  0* 0*        f7     `
-
-#### Change brightness of left jog wheel background 
-`SysEx Header   Denon DJ Header      Command      Background   Brightness      Extra Bits      SysEx Footer`
-
-`     f0           00 02 0b       10 08 0b 00 09      00          0* 0*     00 00 00 00 00 00       f7     `
 
 #### Change foreground text
-`SysEx Header   Denon DJ Header      Command       ? ? ? ?      Text     SysEx Footer`
-
-`     f0           00 02 0b       10 08 0a 00 04   00 04 01   0* 0* 0*        f7     `
+- `f0` - SysEx header
+- `00 02 0b` - Denon ID
+- `10 or 30` - Control the left or right screen respectively
+- `08 0a 00 04` - Command for changing text
+- `00 04` - Other parameters NEEDS INVESTIGATION
+- `0* 0*` - Text to show (See list below for possible values)
+- `f7` - SysEx footer
 
 #### Foreground text values
-- `00` - 1/64
-- `01` - 1/32
-- `02` - 1/16
-- `03` - 1/8
-- `04` - 1/4
-- `05` - 1/2
-- `06` - 1
-- `07` - 2
-- `08` - 4
-- `09` - 8
-- `0a` - 16
-- `0b` - 32
-- `0c` - 64
-- `0d` - --
-- `0e` - A
-- `0f` - B
-- `10` - 3
-- `11` - 6
-- `12` - 12
-- `13` - C
-- `14` - D
+- `00 00` - 1/64
+- `00 01` - 1/32
+- `00 02` - 1/16
+- `00 03` - 1/8
+- `00 04` - 1/4
+- `00 05` - 1/2
+- `00 06` - 1
+- `00 07` - 2
+- `00 08` - 4
+- `00 09` - 8
+- `00 0a` - 16
+- `00 0b` - 32
+- `00 0c` - 64
+- `00 0d` - --
+- `00 0e` - A
+- `00 0f` - B
+- `01 00` - 3
+- `01 01` - 6
+- `01 02` - 12
+- `01 03` - C
+- `01 04` - D
 
 ### FX OLED Screens
 
